@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
+//    id("com.google.devtools.ksp") version "1.8.21-1.0.11"
     id("dagger.hilt.android.plugin")
 }
 
@@ -50,6 +51,7 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "**/sqlite-*.dll"
         }
     }
 }
@@ -82,6 +84,14 @@ dependencies {
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    // Room
+    implementation("androidx.room:room-runtime:2.5.0")
+    kapt("androidx.room:room-compiler:2.5.0")
+    implementation("androidx.room:room-ktx:2.5.0")
+    implementation("org.xerial:sqlite-jdbc:3.36.0.3")
+//    ksp ("androidx.room:room-compiler:2.5.0")
+    
 }
 
 kapt {
